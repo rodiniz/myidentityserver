@@ -29,9 +29,7 @@ namespace IdentityServer4EF
             services.AddControllersWithViews();
 
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            string connectionString = env == "Development"
-                ? Configuration.GetConnectionString("DefaultConnection")
-                : Environment.GetEnvironmentVariable("DATABASE_URL");
+            string connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
             // Parse connection URL to connection string for Npgsql
             connectionString = connectionString.Replace("postgres://", string.Empty);
             var pgUserPass = connectionString.Split("@")[0];
